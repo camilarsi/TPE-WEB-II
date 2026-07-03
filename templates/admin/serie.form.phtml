@@ -1,0 +1,22 @@
+<?php require 'templates/header.phtml' ?>
+
+<h2 class="my-4">Nueva Serie</h2>
+
+<?php if ($error): ?>
+    <div class="alert alert-danger"><?= $error ?></div>
+<?php endif ?>
+
+<form action="admin/series" method="POST">
+    <div class="form-group mb-2">
+        <label>Nombre *</label>
+        <input required name="nombre" type="text" class="form-control">
+    </div>
+    <div class="form-group mb-2">
+        <label>Descripción</label>
+        <textarea name="descripcion" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+    <a href="admin/series" class="btn btn-secondary mt-2">Cancelar</a>
+</form>
+
+<?php require 'templates/footer.phtml' ?>

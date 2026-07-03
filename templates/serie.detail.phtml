@@ -1,0 +1,16 @@
+<?php require 'templates/header.phtml' ?>
+
+<h2 class="my-4"><?= $serie->nombre ?></h2>
+<p class="text-muted"><?= $serie->descripcion ?></p>
+
+<hr>
+
+<ul class="list-group">
+    <?php foreach ($piezas as $pieza): ?>
+        <li class="list-group-item">
+            <b><?= $pieza->titulo ?></b> | <?= $pieza->materiales ?> | <?= $pieza->estado ?>
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<?php require 'templates/footer.phtml' ?>

@@ -1,0 +1,19 @@
+<?php require 'templates/header.phtml' ?>
+
+<h2 class="my-4">Series</h2>
+
+<div class="row">
+    <?php foreach ($series as $serie): ?>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $serie->nombre ?></h5>
+                    <p class="card-text"><?= $serie->descripcion ?></p>
+                    <a href="series/<?= $serie->id ?>" class="btn btn-outline-dark btn-sm">Ver piezas</a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
+</div>
+
+<?php require 'templates/footer.phtml' ?>

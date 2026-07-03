@@ -1,0 +1,19 @@
+<?php require 'templates/header.phtml' ?>
+
+
+
+<ul class="list-group">
+    <?php foreach ($piezas as $pieza): ?>
+        <li class="list-group-item">
+            <div>
+                <a href="piezas/<?= $pieza->id ?>"><b><?= $pieza->titulo ?></b></a>
+                | <?= substr($pieza->descripcion, 0, 50) ?> | <?= $pieza->materiales ?>
+            </div>
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<p class="mt-3"><small>Mostrando <?= $count ?> piezas</small></p>
+
+
+<?php require 'templates/footer.phtml' ?>

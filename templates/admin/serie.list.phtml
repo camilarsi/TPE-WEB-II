@@ -1,0 +1,31 @@
+<?php require 'templates/header.phtml' ?>
+
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h2>Administrar Series</h2>
+    <a href="admin/series/nueva" class="btn btn-primary">+ Nueva serie</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($series as $serie): ?>
+            <tr>
+                <td><?= $serie->nombre ?></td>
+                <td><?= $serie->descripcion ?></td>
+                <td>
+                    <a href="admin/series/<?= $serie->id ?>/eliminar"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('¿Eliminar esta serie?')">Eliminar</a>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
+
+<?php require 'templates/footer.phtml' ?>

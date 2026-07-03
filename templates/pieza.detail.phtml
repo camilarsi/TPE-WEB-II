@@ -1,0 +1,23 @@
+<?php require 'templates/header.phtml' ?>
+
+<div class="my-4">
+    <h2><?= $pieza->titulo ?></h2>
+    <p class="text-muted">Serie: <?= $pieza->nombre_serie ?></p>
+
+    <hr>
+
+    <p><?= $pieza->descripcion ?></p>
+
+    <ul class="list-unstyled">
+        <li><b>Materiales:</b> <?= $pieza->materiales ?></li>
+        <li><b>Año:</b> <?= $pieza->anio ?></li>
+        <li><b>Estado:</b> <?= $pieza->estado ?></li>
+        <?php if ($pieza->ubicacion): ?>
+            <li><b>Ubicación:</b> <?= $pieza->ubicacion ?></li>
+        <?php endif ?>
+    </ul>
+
+    <a href="piezas" class="btn btn-outline-dark btn-sm">← Volver a la galería</a>
+</div>
+
+<?php require 'templates/footer.phtml' ?>

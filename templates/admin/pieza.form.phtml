@@ -1,33 +1,38 @@
-<!-- formulario de alta de pieza -->
-<form action="agregar" method="POST" class="my-4">
+<?php require 'templates/header.phtml' ?>
+
+<h2 class="my-4">Nueva Pieza</h2>
+
+<?php if ($error): ?>
+    <div class="alert alert-danger"><?= $error ?></div>
+<?php endif ?>
+
+<form action="admin/piezas" method="POST">
     <div class="form-group mb-2">
-        <label>Título</label>
+        <label>Título *</label>
         <input required name="title" type="text" class="form-control">
     </div>
-
     <div class="form-group mb-2">
         <label>Descripción</label>
         <textarea name="description" class="form-control" rows="3"></textarea>
     </div>
-
     <div class="form-group mb-2">
-        <label>Materiales</label>
+        <label>Materiales *</label>
         <input required name="materiales" type="text" class="form-control">
     </div>
-
     <div class="form-group mb-2">
         <label>Año</label>
         <input name="anio" type="number" min="1900" max="2099" class="form-control">
     </div>
-
     <div class="form-group mb-2">
-        <label>Serie</label>
+        <label>Serie *</label>
         <select required name="id_serie" class="form-control">
             <?php foreach ($series as $serie): ?>
                 <option value="<?= $serie->id ?>"><?= $serie->nombre ?></option>
             <?php endforeach ?>
         </select>
     </div>
-
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+    <a href="admin/piezas" class="btn btn-secondary mt-2">Cancelar</a>
 </form>
+
+<?php require 'templates/footer.phtml' ?>

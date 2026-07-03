@@ -1,0 +1,39 @@
+<?php require 'templates/header.phtml' ?>
+
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h2>Administrar Piezas</h2>
+    <a href="admin/piezas/nueva" class="btn btn-primary">+ Nueva pieza</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Serie</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($piezas as $pieza): ?>
+            <tr>
+                <td><?= $pieza->titulo ?></td>
+                <td><?= $pieza->nombre_serie ?></td>
+                <td><?= $pieza->estado ?></td>
+                <td>
+                    <a href="admin/piezas/<?= $pieza->id ?>/editar" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="admin/piezas/<?= $pieza->id ?>/eliminar"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('¿Eliminar esta pieza?')">Eliminar</a>
+                </td>
+                <td>
+                    <a href="admin/piezas/<?= $pieza->id ?>/eliminar"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('¿Eliminar esta pieza?')">Eliminar</a>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
+
+<?php require 'templates/footer.phtml' ?>
