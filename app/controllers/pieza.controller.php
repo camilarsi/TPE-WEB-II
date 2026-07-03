@@ -22,11 +22,13 @@ class PiezaController
 
     public function showPiezas()
     {
-        // obtengo piezas del controlador
-        $piezas = $this->model->getPiezas();
-
+        $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit  = 4;
+        $total  = $this->model->countPiezas();
+        $pages  = ceil($total / $limit);
+        $piezas = $this->model->getPiezas($page, $limit);
         $series = $this->serieModel->getSeries();
-        $this->view->showPiezas($piezas, $series);
+        $this->view->showPiezas($piezas, $series, $page, $pages);
     }
 
     public function addPieza()

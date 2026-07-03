@@ -9,18 +9,26 @@ class PiezaModel
         $this->db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     }
 
-    /**
-     * Obtiene y devuelve de la base de datos todas las piezas.
-     */
-    function getPiezas()
+    function getPiezas($page = 1, $limit = 4)
     {
-        $query = $this->db->prepare(
+        $offset = ($page - 1) * $limit;
+        $query  = $this->db->prepare(
             'SELECT piezas.*, series.nombre AS nombre_serie 
          FROM piezas 
-         JOIN series ON piezas.id_serie = series.id'
+         JOIN series ON piezas.id_serie = series.id
+         LIMIT :limit OFFSET :offset'
         );
+        $query->bindValue(':limit',  $limit,  PDO::PARAM_INT);
+        $query->bindValue(':offset', $offset, PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function countPiezas()
+    {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM piezas');
+        $query->execute();
+        return $query->fetchColumn();
     }
 
     function getPiezaById($id)
