@@ -66,4 +66,15 @@ class PiezaModel
         );
         $query->execute([$titulo, $descripcion, $materiales, $anio, $id_serie, $id]);
     }
+
+    function getPiezasApi()
+    {
+        $query = $this->db->prepare(
+            'SELECT piezas.*, series.nombre AS nombre_serie 
+         FROM piezas 
+         JOIN series ON piezas.id_serie = series.id'
+        );
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }
