@@ -18,7 +18,13 @@ class PiezaApiController extends ApiController
     function get($params = [])
     {
         if (empty($params)) {
-            $piezas = $this->model->getPiezasApi();
+            $page     = $_GET['page']     ?? 1;
+            $limit    = $_GET['limit']    ?? 5;
+            $orderBy  = $_GET['orderBy']  ?? 'id';
+            $dir      = $_GET['dir']      ?? 'asc';
+            $id_serie = $_GET['id_serie'] ?? null;
+
+            $piezas = $this->model->getPiezasApi($page, $limit, $orderBy, $dir, $id_serie);
             $this->view->response($piezas, 200);
         } else {
             $pieza = $this->model->getPiezaById($params[':ID']);
@@ -49,7 +55,7 @@ class PiezaApiController extends ApiController
             return;
         }
 
-        $id    = $this->model->insertarPieza($titulo, $descripcion, $materiales, $anio, null, $id_serie);
+        $id    = $this->model->insertarPieza($titulo, $descripcion, $materiales, $anio, $id_serie);
         $pieza = $this->model->getPiezaById($id);
         $this->view->response($pieza, 201);
     }

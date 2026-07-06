@@ -67,14 +67,34 @@ class PiezaModel
         $query->execute([$titulo, $descripcion, $materiales, $anio, $id_serie, $id]);
     }
 
-    function getPiezasApi()
+    function getPiezasApi($page = 1, $limit = 5, $orderBy = 'id', $dir = 'asc', $id_serie = null)
     {
-        $query = $this->db->prepare(
-            'SELECT piezas.*, series.nombre AS nombre_serie 
-         FROM piezas 
-         JOIN series ON piezas.id_serie = series.id'
-        );
+        $camposValidos = ['id', 'titulo', 'anio', 'materiales', 'estado', 'id_serie'];
+        if (!in_array($orderBy, $camposValidos)) $orderBy = 'id';
+        $dir    = strtolower($dir) === 'desc' ? 'DESC' : 'ASC';
+        $offset = ($page - 1) * $limit;
+        $where  = $id_serie ? 'WHERE piezas.id_serie = :id_serie' : '';
+
+        $sql   = "SELECT piezas.*, series.nombre AS nombre_serie
+              FROM piezas
+              JOIN series ON piezas.id_serie = series.id
+              $where
+              ORDER BY piezas.$orderBy $dir
+              LIMIT :limit OFFSET :offset";
+
+        $query = $this->db->prepare($sql);
+        if ($id_serie) $query->bindValue(':id_serie', $id_serie, PDO::PARAM_INT);
+        $query->bindValue(':limit',  $limit,  PDO::PARAM_INT);
+        $query->bindValue(':offset', $offset, PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function countPiezasApi($id_serie = null)
+    {
+        $where = $id_serie ? 'WHERE id_serie = ?' : '';
+        $query = $this->db->prepare("SELECT COUNT(*) FROM piezas $where");
+        $query->execute($id_serie ? [$id_serie] : []);
+        return (int)$query->fetchColumn();
     }
 }

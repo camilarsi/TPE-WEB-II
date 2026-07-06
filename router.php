@@ -69,8 +69,8 @@ switch ($params[0]) {
                     } else {
                         $controller->edit($params[2]);
                     }
-                } elseif (isset($params[2]) && $params[2] === 'eliminar') {
-                    $controller->destroy($params[3] ?? null);
+                } elseif (isset($params[3]) && $params[3] === 'eliminar') {
+                    $controller->destroy($params[2]);
                 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $controller->store();
                 } else {
