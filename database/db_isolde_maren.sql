@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-07-2026 a las 00:23:31
+-- Tiempo de generación: 06-07-2026 a las 21:39:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -53,7 +53,9 @@ INSERT INTO `piezas` (`id`, `titulo`, `descripcion`, `anio`, `materiales`, `imag
 (16, 'Estrato I', 'Capas horizontales de arcilla cocida que imitan sedimentos.', '2018', 'Cerámica de alta cocción', '', 'museo', 'MALBA, Buenos Aires', 3),
 (17, 'Huella', 'Impresión de suelo natural en cerámica, enmarcada en acero.', '2021', 'Cerámica y acero corten', '', 'vendida', NULL, 3),
 (18, 'Depósito', 'Masa informe de tierra y resina que parece recién extraída del suelo.', '2023', 'Tierra, resina y alambre', '', 'disponible', NULL, 3),
-(19, 'Cristalización ', 'Estructura porosa formada por la interacción entre cera de abeja fundida y cristales de sal marina, suspendida en bastidor de acero negro.', '2026', 'Cera de Abeja, Sal Marina ', NULL, 'disponible', NULL, 1);
+(19, 'Cristalización ', 'Estructura porosa formada por la interacción entre cera de abeja fundida y cristales de sal marina, suspendida en bastidor de acero negro.', '2026', 'Cera de Abeja, Sal Marina ', NULL, 'disponible', NULL, 1),
+(20, 'Pieza API', 'Creada via API', '2024', 'Bronce', NULL, 'disponible', NULL, 1),
+(21, 'Pieza API Editada', 'Creada via API', '2024', 'Bronce y acero', NULL, 'disponible', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
-(1, 'Camila', '$2y$10$wSo7bCetVA9OjTjzQ5/qiO8LKYdWKvO4w3FzflVCfX05XEE1T.A6W');
+(1, 'webadmin', '$2y$10$wSo7bCetVA9OjTjzQ5/qiO8LKYdWKvO4w3FzflVCfX05XEE1T.A6W');
 
 --
 -- Índices para tablas volcadas
@@ -127,7 +129,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `piezas`
 --
 ALTER TABLE `piezas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `series`
